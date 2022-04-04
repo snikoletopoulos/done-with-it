@@ -1,4 +1,5 @@
 export default {
-	red: "#fc5c65",
-	green: "#4ECDC4",
+	primary: "#fc5c65",
+	secondary: "#4ECDC4",
+	black: "#000",
 };
