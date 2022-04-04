@@ -6,8 +6,18 @@ module.exports = function (api) {
 			[
 				"module-resolver",
 				{
-					root: ["./app"],
-					extentions: [".ios.js", ".android.js", ".js", ".ts", ".tsx", ".json"],
+					alias: {
+						components: "./app/components",
+						assets: "./app/assets",
+						navigation: "./app/navigation",
+						screens: "./app/screens",
+						data: "./app/data",
+						models: "./app/models",
+						constants: "./app/constants",
+						store: "./app/store",
+						types: "./app/types",
+						helpers: "./app/helper",
+					},
 				},
 			],
 		],

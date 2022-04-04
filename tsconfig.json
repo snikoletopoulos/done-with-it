@@ -2,18 +2,18 @@
 	"extends": "expo/tsconfig.base",
 	"compilerOptions": {
 		"strict": true,
-		"baseUrl": "./app",
-		// "paths": {
-		// 	"components/*": ["app/components/*"],
-		// 	"assets/*": ["app/assets/*"],
-		// 	"navigation/*": ["app/navigation/*"],
-		// 	"screens/*": ["app/screens/*"],
-		// 	"data/*": ["app/data/*"],
-		// 	"models/*": ["app/models/*"],
-		// 	"constants/*": ["app/constants/*"],
-		// 	"store/*": ["app/store/*"],
-		// 	"types/*": ["app/types/*"],
-		// 	"helpers/*": ["app/helpers/*"]
-		// }
+		"baseUrl": ".",
+		"paths": {
+			"components/*": ["app/components/*"],
+			"assets/*": ["app/assets/*"],
+			"navigation/*": ["app/navigation/*"],
+			"screens/*": ["app/screens/*"],
+			"data/*": ["app/data/*"],
+			"models/*": ["app/models/*"],
+			"constants/*": ["app/constants/*"],
+			"store/*": ["app/store/*"],
+			"types/*": ["app/types/*"],
+			"helpers/*": ["app/helpers/*"]
+		}
 	}
 }
