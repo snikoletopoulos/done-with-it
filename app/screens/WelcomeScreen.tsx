@@ -27,8 +27,16 @@ const WelcomeScreen: React.FC = () => {
 			</View>
 
 			<View style={styles.buttonContainer}>
-				<AppButton color={"primary"} title="Login" onPress={() => {}} />
-				<AppButton color={"secondary"} title="Register" onPress={() => {}} />
+				<AppButton
+					color={"primary"}
+					title="Login"
+					onPress={() => console.log("Login")}
+				/>
+				<AppButton
+					color={"secondary"}
+					title="Register"
+					onPress={() => console.log("Register")}
+				/>
 			</View>
 		</ImageBackground>
 	);
