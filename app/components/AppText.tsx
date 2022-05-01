@@ -1,8 +1,8 @@
-import { StyleSheet, Text, TextStyle, Platform } from "react-native";
+import { StyleSheet, Text, TextStyle, Platform, TextProps } from "react-native";
 
-const AppText: React.FC = props => {
+const AppText: React.FC<TextProps> = props => {
 	return (
-		<Text style={styles.text} {...props}>
+		<Text style={[styles.text, props.style]} {...props}>
 			{props.children}
 		</Text>
 	);
