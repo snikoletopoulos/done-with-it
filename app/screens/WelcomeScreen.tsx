@@ -9,8 +9,6 @@ import {
 	TextStyle,
 } from "react-native";
 
-import colors from "../constants/colors";
-
 import AppButton from "components/AppButton";
 
 const WelcomeScreen: React.FC = () => {
