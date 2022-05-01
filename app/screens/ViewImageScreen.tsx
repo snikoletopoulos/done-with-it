@@ -15,13 +15,13 @@ const ViewImageScreen: React.FC = () => {
 			<MaterialCommunityIcons
 				style={styles.closeIcon}
 				name="close"
-				color={"white"}
+				color="white"
 				size={35}
 			/>
 			<MaterialCommunityIcons
 				style={styles.deleteIcon}
 				name="trash-can-outline"
-				color={"white"}
+				color="white"
 				size={35}
 			/>
 		</View>
