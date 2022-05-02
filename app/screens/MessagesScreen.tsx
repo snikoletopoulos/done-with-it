@@ -34,6 +34,7 @@ const MessagesScreen: React.FC = () => {
 						renderRightActions={() => (
 							<ListItemDeleteAction onPress={() => handleDelete(item)} />
 						)}
+						showChevrons
 					/>
 				)}
 				ItemSeparatorComponent={ListItemSeparator}

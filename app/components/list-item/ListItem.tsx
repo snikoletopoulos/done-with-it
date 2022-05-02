@@ -14,6 +14,7 @@ import colors from "constants/colors";
 
 import AppText from "../ui/AppText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface Props {
 	title: string;
@@ -24,6 +25,7 @@ interface Props {
 		typeof Swipeable
 	>["renderRightActions"];
 	IconComponent?: ReactNode;
+	showChevrons?: boolean;
 }
 
 const ListItem: React.FC<Props> = props => {
@@ -42,6 +44,11 @@ const ListItem: React.FC<Props> = props => {
 							<AppText style={styles.subTitle}>{props.subTitle}</AppText>
 						)}
 					</View>
+					<MaterialCommunityIcons
+						name="chevron-right"
+						size={20}
+						color={colors.medium}
+					/>
 				</View>
 			</Pressable>
 		</Swipeable>
@@ -64,6 +71,7 @@ const styles = StyleSheet.create<Styles>({
 		flexDirection: "row",
 		padding: 15,
 		backgroundColor: colors.white,
+		alignItems: "center",
 	},
 
 	pressed: {
@@ -77,8 +85,8 @@ const styles = StyleSheet.create<Styles>({
 	},
 
 	infoContainer: {
-		justifyContent: "center",
 		marginLeft: 10,
+		flex: 1,
 	},
 
 	title: {
