@@ -44,7 +44,7 @@ interface Styles {
 	icon: ViewStyle;
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Styles>({
 	container: {
 		justifyContent: "center",
 		alignItems: "center",
