@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 30,
 		paddingVertical: 15,
 		alignItems: "center",
-		width: "100%",
+		width: `${100 / 3}%`,
 	},
 
 	label: {
