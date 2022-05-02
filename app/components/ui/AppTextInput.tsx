@@ -1,6 +1,7 @@
 import {
 	StyleSheet,
 	TextInput,
+	TextInputProps,
 	TextStyle,
 	View,
 	ViewStyle,
@@ -11,7 +12,7 @@ import defaultStyles from "constants/styles";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-interface Props {
+interface Props extends TextInputProps {
 	icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
 }
 
