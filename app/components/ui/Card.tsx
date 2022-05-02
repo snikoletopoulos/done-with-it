@@ -10,7 +10,7 @@ import {
 
 import colors from "constants/colors";
 
-import AppText from "components/AppText";
+import AppText from "components/ui/AppText";
 
 interface Props {
 	title: string;

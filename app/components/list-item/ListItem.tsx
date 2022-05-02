@@ -12,7 +12,7 @@ import {
 
 import colors from "constants/colors";
 
-import AppText from "./AppText";
+import AppText from "../ui/AppText";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
 interface Props {

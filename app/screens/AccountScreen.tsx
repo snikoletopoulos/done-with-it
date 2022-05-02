@@ -2,10 +2,10 @@ import { StyleSheet, FlatList, View, ViewStyle } from "react-native";
 
 import colors from "constants/colors";
 
-import Screen from "components/Screen";
-import ListItem from "components/ListItem";
-import Icon from "components/Icon";
-import ListItemSeparator from "components/ListItemSeparator";
+import Screen from "components/ui/Screen";
+import ListItem from "components/list-item/ListItem";
+import Icon from "components/ui/Icon";
+import ListItemSeparator from "components/list-item/ListItemSeparator";
 
 interface MenuItem {
 	title: string;

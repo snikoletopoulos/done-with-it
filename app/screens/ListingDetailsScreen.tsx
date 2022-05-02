@@ -9,8 +9,8 @@ import {
 
 import colors from "constants/colors";
 
-import AppText from "components/AppText";
-import ListItem from "components/ListItem";
+import AppText from "components/ui/AppText";
+import ListItem from "components/list-item/ListItem";
 
 const ListingDetailsScreen: React.FC = () => {
 	return (
