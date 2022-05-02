@@ -9,7 +9,7 @@ import {
 	TextStyle,
 } from "react-native";
 
-import AppButton from "components/ui/AppButton";
+import Button from "components/ui/Button";
 
 const WelcomeScreen: React.FC = () => {
 	return (
@@ -27,12 +27,12 @@ const WelcomeScreen: React.FC = () => {
 			</View>
 
 			<View style={styles.buttonContainer}>
-				<AppButton
+				<Button
 					color={"primary"}
 					title="Login"
 					onPress={() => console.log("Login")}
 				/>
-				<AppButton
+				<Button
 					color={"secondary"}
 					title="Register"
 					onPress={() => console.log("Register")}

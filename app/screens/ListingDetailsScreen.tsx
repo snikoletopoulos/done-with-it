@@ -9,7 +9,7 @@ import {
 
 import colors from "constants/colors";
 
-import AppText from "components/ui/AppText";
+import Text from "components/ui/Text";
 import ListItem from "components/list-item/ListItem";
 
 const ListingDetailsScreen: React.FC = () => {
@@ -20,8 +20,8 @@ const ListingDetailsScreen: React.FC = () => {
 				source={require("../assets/images/jacket.jpg")}
 			/>
 			<View style={styles.detailsContainer}>
-				<AppText style={styles.title}>Red jacket for sale</AppText>
-				<AppText style={styles.price}>$100</AppText>
+				<Text style={styles.title}>Red jacket for sale</Text>
+				<Text style={styles.price}>$100</Text>
 				<View style={styles.userContainer}>
 					<ListItem
 						image={require("../assets/images/mosh.jpg")}

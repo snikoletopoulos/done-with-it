@@ -10,7 +10,7 @@ import {
 
 import colors from "constants/colors";
 
-import AppText from "components/ui/AppText";
+import Text from "components/ui/Text";
 
 interface Props {
 	title: string;
@@ -25,12 +25,12 @@ const Card: React.FC<Props> = props => {
 		<View style={styles.card}>
 			<Image source={image} style={styles.image} />
 			<View style={styles.detailsContainer}>
-				<AppText style={styles.title} numberOfLines={1}>
+				<Text style={styles.title} numberOfLines={1}>
 					{title}
-				</AppText>
-				<AppText style={styles.subTitle} numberOfLines={1}>
+				</Text>
+				<Text style={styles.subTitle} numberOfLines={1}>
 					{subTitle}
-				</AppText>
+				</Text>
 			</View>
 		</View>
 	);
