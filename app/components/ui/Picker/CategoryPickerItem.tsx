@@ -7,7 +7,7 @@ import Text from "../Text";
 
 const CategoryPickerItem: React.FC<PickerItemProps> = props => {
 	return (
-		<Pressable style={styles.container}>
+		<Pressable style={styles.container} onPress={props.onPress}>
 			{props.item.icon && (
 				<Icon
 					backgroundColor={props.item.color}
