@@ -73,11 +73,11 @@ const styles = StyleSheet.create<Styles>({
 		width: 70,
 		height: 70,
 		borderRadius: 35,
-		marginRight: 10,
 	},
 
 	infoContainer: {
 		justifyContent: "center",
+		marginLeft: 10,
 	},
 
 	title: {
