@@ -18,6 +18,7 @@ interface Styles {
 
 const styles = StyleSheet.create<Styles>({
 	screen: {
+		flex: 1,
 		paddingTop: Constants.statusBarHeight,
 	},
 });
