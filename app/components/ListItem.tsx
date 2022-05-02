@@ -32,10 +32,13 @@ const ListItem: React.FC<Props> = props => {
 				onPress={props.onPress}
 			>
 				<View style={styles.container}>
-					<Image style={styles.image} source={props.image} />
+					{props.IconComponent}
+					{props.image && <Image style={styles.image} source={props.image} />}
 					<View style={styles.infoContainer}>
 						<AppText style={styles.title}>{props.title}</AppText>
-						<AppText style={styles.subTitle}>{props.subTitle}</AppText>
+						{props.subTitle && (
+							<AppText style={styles.subTitle}>{props.subTitle}</AppText>
+						)}
 					</View>
 				</View>
 			</Pressable>
