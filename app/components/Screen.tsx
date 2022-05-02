@@ -4,7 +4,7 @@ import Constants from "expo-constants";
 
 const Screen: React.FC<ViewProps> = props => {
 	return (
-		<SafeAreaView style={[styles.screen, props.style]} {...props}>
+		<SafeAreaView {...props} style={[styles.screen, props.style]}>
 			{props.children}
 		</SafeAreaView>
 	);
