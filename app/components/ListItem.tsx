@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
 	ImageSourcePropType,
 	StyleSheet,
@@ -16,12 +17,13 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 
 interface Props {
 	title: string;
-	subTitle: string;
-	image: ImageSourcePropType;
+	subTitle?: string;
+	image?: ImageSourcePropType;
 	onPress?: React.ComponentProps<typeof Pressable>["onPress"];
 	renderRightActions?: React.ComponentProps<
 		typeof Swipeable
 	>["renderRightActions"];
+	IconComponent?: ReactNode;
 }
 
 const ListItem: React.FC<Props> = props => {
