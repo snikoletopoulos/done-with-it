@@ -39,14 +39,14 @@ const ListItem: React.FC<Props> = props => {
 					{props.IconComponent}
 					{props.image && <Image style={styles.image} source={props.image} />}
 					<View style={styles.infoContainer}>
-						<AppText style={styles.title}>{props.title}</AppText>
+						<AppText style={styles.title} numberOfLines={1}>{props.title}</AppText>
 						{props.subTitle && (
-							<AppText style={styles.subTitle}>{props.subTitle}</AppText>
+							<AppText style={styles.subTitle} numberOfLines={1}>{props.subTitle}</AppText>
 						)}
 					</View>
 					<MaterialCommunityIcons
 						name="chevron-right"
-						size={20}
+						size={25}
 						color={colors.medium}
 					/>
 				</View>
