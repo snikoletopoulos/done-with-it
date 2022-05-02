@@ -10,7 +10,7 @@ import {
 import colors from "constants/colors";
 
 import Text from "components/ui/Text";
-import ListItem from "components/list-item/ListItem";
+import ListItem from "components/list/ListItem";
 
 const ListingDetailsScreen: React.FC = () => {
 	return (

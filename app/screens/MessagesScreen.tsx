@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FlatList } from "react-native";
 
-import ListItem from "components/list-item/ListItem";
+import ListItem from "components/list/ListItem";
 import Screen from "components/ui/Screen";
-import ListItemSeparator from "components/list-item/ListItemSeparator";
-import ListItemDeleteAction from "components/list-item/ListItemDeleteAction";
+import ListItemSeparator from "components/list/ListItemSeparator";
+import ListItemDeleteAction from "components/list/ListItemDeleteAction";
 
 import { initialMessages } from "../../DUMMY_DATA";
 import { Message } from "../../DUMMY_DATA";
