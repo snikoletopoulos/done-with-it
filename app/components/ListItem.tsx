@@ -63,6 +63,7 @@ const styles = StyleSheet.create<Styles>({
 	container: {
 		flexDirection: "row",
 		padding: 15,
+		backgroundColor: colors.white,
 	},
 
 	pressed: {
