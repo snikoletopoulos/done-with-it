@@ -7,7 +7,7 @@ export interface Message {
 	image: ImageSourcePropType;
 }
 
-export const messages: Message[] = [
+export const initialMessages: Message[] = [
 	{
 		id: 1,
 		title: "Hello",
