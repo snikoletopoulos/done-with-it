@@ -23,6 +23,7 @@ interface Props {
 	selectedItem?: Option;
 	onSelectItem: (item: Option) => void;
 	PickerItemComponent: React.FC<PickerItemProps>;
+	numberOfColumns?: number;
 }
 
 const AppPicker: React.FC<Props> = props => {
@@ -31,6 +32,7 @@ const AppPicker: React.FC<Props> = props => {
 		placeholder,
 		options,
 		PickerItemComponent = PickerItem,
+		numberOfColumns = 1,
 	} = props;
 	const [modalIsVisible, setModalIsVisible] = useState(false);
 
@@ -63,6 +65,7 @@ const AppPicker: React.FC<Props> = props => {
 				<FlatList
 					data={options}
 					keyExtractor={option => option.value.toString()}
+					numColumns={numberOfColumns}
 					renderItem={({ item }) => (
 						<PickerItemComponent
 							item={item}
