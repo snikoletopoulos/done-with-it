@@ -24,6 +24,7 @@ interface Props {
 	onSelectItem: (item: Option) => void;
 	PickerItemComponent?: React.FC<PickerItemProps>;
 	numberOfColumns?: number;
+	width?: number | string;
 }
 
 const Picker: React.FC<Props> = props => {
@@ -33,13 +34,14 @@ const Picker: React.FC<Props> = props => {
 		options,
 		PickerItemComponent = PickerItem,
 		numberOfColumns = 1,
+		width = "100%",
 	} = props;
 	const [modalIsVisible, setModalIsVisible] = useState(false);
 
 	return (
 		<>
 			<Pressable
-				style={styles.container}
+				style={[styles.container, { width }]}
 				onPress={() => setModalIsVisible(true)}
 			>
 				{icon && (
@@ -94,7 +96,6 @@ const styles = StyleSheet.create<Styles>({
 		backgroundColor: colors.light,
 		borderRadius: 25,
 		flexDirection: "row",
-		width: "100%",
 		padding: 15,
 		marginVertical: 10,
 		alignItems: "center",

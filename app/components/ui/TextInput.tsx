@@ -14,13 +14,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface Props extends TextInputProps {
 	icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
+	width?: number | string;
 }
 
 const AppTextInput: React.FC<Props> = props => {
-	const { icon, ...restProps } = props;
+	const { icon, width = "100%", ...restProps } = props;
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, { width }]}>
 			{icon && (
 				<MaterialCommunityIcons
 					name={icon}
@@ -29,7 +30,11 @@ const AppTextInput: React.FC<Props> = props => {
 					style={styles.icon}
 				/>
 			)}
-			<TextInput style={styles.textInput} {...restProps} />
+			<TextInput
+				style={styles.textInput}
+				{...restProps}
+				placeholderTextColor={restProps.placeholderTextColor ?? colors.medium}
+			/>
 		</View>
 	);
 };
@@ -47,7 +52,6 @@ const styles = StyleSheet.create<Styles>({
 		backgroundColor: colors.light,
 		borderRadius: 25,
 		flexDirection: "row",
-		width: "100%",
 		padding: 15,
 		marginVertical: 10,
 		alignItems: "center",

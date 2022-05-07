@@ -5,10 +5,11 @@ import ErrorMessage from "components/form/ErrorMessage";
 
 interface Props extends React.ComponentProps<typeof TextInput> {
 	name: keyof FormikValues;
+	width?: number | string;
 }
 
 const FormField: React.FC<Props> = props => {
-	const { name, ...rest } = props;
+	const { name, width, ...rest } = props;
 	const loginForm = useFormikContext<FormikValues>();
 
 	return (
@@ -16,7 +17,8 @@ const FormField: React.FC<Props> = props => {
 			<TextInput
 				value={loginForm.values[name]}
 				onChangeText={loginForm.handleChange(name)}
-				onBlur={loginForm.handleBlur(name)}
+				onBlur={loginForm.handleBlur(name) ?? undefined}
+				width={width}
 				{...rest}
 			/>
 			{loginForm.touched[name] && loginForm.errors[name] && (

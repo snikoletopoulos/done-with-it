@@ -9,6 +9,7 @@ interface Props {
 	item: Option[];
 	name: keyof FormikValues;
 	placeholder: string;
+	width?: number | string;
 }
 
 const FormPicker: React.FC<Props> = props => {
@@ -21,6 +22,7 @@ const FormPicker: React.FC<Props> = props => {
 				onSelectItem={item => setFieldValue(props.name.toString(), item)}
 				placeholder={props.placeholder}
 				selectedItem={values[props.name]}
+				width={props.width}
 			/>
 			<ErrorMessage error={errors[props.name]} />
 		</>
