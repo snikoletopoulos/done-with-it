@@ -1,9 +1,16 @@
 import { StyleSheet, TextStyle } from "react-native";
 
+import { FormikErrors, FormikValues } from "formik";
+
 import Text from "components/ui/Text";
 
 interface Props {
-	error: string | null | undefined;
+	error:
+		| string
+		| string[]
+		| FormikErrors<FormikValues>
+		| FormikErrors<FormikValues>[]
+		| undefined;
 }
 
 const ErrorMessage: React.FC<Props> = props => {

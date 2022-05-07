@@ -1,28 +1,24 @@
-import { useFormikContext } from "formik";
+import { FormikValues, useFormikContext } from "formik";
 
 import { Option } from "types/picker.types";
 
 import Picker from "components/ui/Picker/Picker";
 import ErrorMessage from "components/form/ErrorMessage";
 
-interface Value {
-
-}
-
-interface Props<Value extends Option> {
+interface Props {
 	item: Option[];
-	name: string extends keyof Value;
+	name: keyof FormikValues;
 	placeholder: string;
 }
 
-const FormPicker = <V,>(props: Props<V>) => {
-	const { errors, setFieldValue, touched, values } = useFormikContext<V>();
+const FormPicker: React.FC<Props> = props => {
+	const { errors, setFieldValue, values } = useFormikContext<FormikValues>();
 
 	return (
 		<>
 			<Picker
 				options={props.item}
-				onSelectItem={item => setFieldValue(props.name, item)}
+				onSelectItem={item => setFieldValue(props.name.toString(), item)}
 				placeholder={props.placeholder}
 				selectedItem={values[props.name]}
 			/>
