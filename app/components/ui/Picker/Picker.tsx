@@ -52,9 +52,11 @@ const Picker: React.FC<Props> = props => {
 						style={styles.icon}
 					/>
 				)}
-				<Text style={styles.text}>
-					{props.selectedItem ? props.selectedItem.label : placeholder}
-				</Text>
+				{props.selectedItem ? (
+					<Text style={styles.text}>{props.selectedItem.label}</Text>
+				) : (
+					<Text style={styles.placeholder}>{placeholder}</Text>
+				)}
 				<MaterialCommunityIcons
 					name="chevron-down"
 					size={20}
@@ -89,6 +91,7 @@ interface Styles {
 	container: ViewStyle;
 	icon: ViewStyle;
 	text: TextStyle;
+	placeholder: TextStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -107,5 +110,10 @@ const styles = StyleSheet.create<Styles>({
 
 	text: {
 		flex: 1,
+	},
+
+	placeholder: {
+		flex: 1,
+		color: colors.medium,
 	},
 });
