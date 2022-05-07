@@ -22,7 +22,7 @@ interface Props {
 	options?: Option[];
 	selectedItem?: Option;
 	onSelectItem: (item: Option) => void;
-	PickerItemComponent: React.FC<PickerItemProps>;
+	PickerItemComponent?: React.FC<PickerItemProps>;
 	numberOfColumns?: number;
 }
 
