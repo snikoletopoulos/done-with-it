@@ -26,7 +26,7 @@ interface Props {
 	numberOfColumns?: number;
 }
 
-const AppPicker: React.FC<Props> = props => {
+const Picker: React.FC<Props> = props => {
 	const {
 		icon,
 		placeholder,
@@ -81,7 +81,7 @@ const AppPicker: React.FC<Props> = props => {
 	);
 };
 
-export default AppPicker;
+export default Picker;
 
 interface Styles {
 	container: ViewStyle;

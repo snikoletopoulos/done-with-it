@@ -15,7 +15,7 @@ interface Props extends PressableProps {
 	title: string;
 }
 
-const AppButton: React.FC<Props> = ({ color = "primary", title, ...rest }) => {
+const Button: React.FC<Props> = ({ color = "primary", title, ...rest }) => {
 	return (
 		<Pressable
 			android_ripple={{ color: "#ccc" }}
@@ -31,7 +31,7 @@ const AppButton: React.FC<Props> = ({ color = "primary", title, ...rest }) => {
 	);
 };
 
-export default AppButton;
+export default Button;
 
 interface Style {
 	container: ViewStyle;
