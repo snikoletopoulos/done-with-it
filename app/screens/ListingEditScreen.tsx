@@ -7,15 +7,20 @@ import {
 	FormPicker,
 	SubmitButton,
 } from "components/form";
+import FormImagePicker from "components/form/FormImagePicker";
+import useLocation from "hooks/use-location.hook";
 
 const validationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label("Title"),
 	price: Yup.number().required().min(1).max(10000).label("Price"),
 	decription: Yup.string().label("Description"),
 	category: Yup.string().required().nullable().label("Category"),
+	images: Yup.array().min(1, "Please select at least one image"),
 });
 
 const ListingEditScreen = () => {
+	const location = useLocation();
+
 	return (
 		<FormikForm
 			initialValues={{
@@ -23,12 +28,14 @@ const ListingEditScreen = () => {
 				price: "",
 				decription: "",
 				category: null,
+				images: [],
 			}}
 			validationSchema={validationSchema}
 			onSubmit={values => {
-				console.log(values);
+				console.log(values, location);
 			}}
 		>
+			<FormImagePicker name="images" />
 			<FormField maxLength={255} name="title" placeholder="Title" />
 			<FormField
 				keyboardType="numeric"
@@ -49,7 +56,7 @@ const ListingEditScreen = () => {
 				name="description"
 				numberOfLines={3}
 				placeholder="Description"
-				width={120}
+				width="100%"
 			/>
 			<SubmitButton title="Post" />
 		</FormikForm>
