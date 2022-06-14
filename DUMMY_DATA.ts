@@ -1,5 +1,5 @@
 import type { ImageSourcePropType } from "react-native";
-import { Option } from "./app/types/picker.types";
+import { Option } from "types/picker.types";
 
 export interface Message {
 	id: number;

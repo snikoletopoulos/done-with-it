@@ -1,5 +1,6 @@
 import * as Yup from "yup";
-import { categories } from "DUMMY_DATA";
+import { categories } from "../../DUMMY_DATA";
+
 import {
 	FormikForm,
 	FormField,

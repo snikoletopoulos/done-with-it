@@ -6,8 +6,8 @@ import Screen from "components/ui/Screen";
 import ListItemSeparator from "components/list/ListItemSeparator";
 import ListItemDeleteAction from "components/list/ListItemDeleteAction";
 
-import { initialMessages } from "../../DUMMY_DATA";
-import { Message } from "../../DUMMY_DATA";
+import { initialMessages } from "DUMMY_DATA";
+import { Message } from "DUMMY_DATA";
 
 const MessagesScreen: React.FC = () => {
 	const [messages, setMessages] = useState(initialMessages);
