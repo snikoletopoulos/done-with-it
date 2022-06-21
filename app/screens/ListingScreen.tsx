@@ -33,6 +33,7 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 						title={item.title}
 						subTitle={`$${item.price}`}
 						image={item.image}
+						onPress={() => props.navigation.navigate("ListingDetails", item)}
 					/>
 				)}
 			/>

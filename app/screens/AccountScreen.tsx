@@ -17,6 +17,7 @@ interface MenuItem {
 		name: React.ComponentProps<typeof Icon>["name"];
 		backgroundColor: typeof colors[keyof typeof colors];
 	};
+	targetScreen: keyof AccountStackParamList;
 }
 
 const menuItems: MenuItem[] = [
@@ -26,6 +27,7 @@ const menuItems: MenuItem[] = [
 			name: "format-list-bulleted",
 			backgroundColor: colors.primary,
 		},
+		targetScreen: "MyListing",
 	},
 	{
 		title: "My Messages",
@@ -33,6 +35,7 @@ const menuItems: MenuItem[] = [
 			name: "email",
 			backgroundColor: colors.secondary,
 		},
+		targetScreen: "Messages",
 	},
 ];
 
@@ -60,6 +63,7 @@ const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
 									backgroundColor={item.icon.backgroundColor}
 								/>
 							}
+							onPress={() => props.navigation.navigate(item.targetScreen)}
 						/>
 					)}
 					ItemSeparatorComponent={ListItemSeparator}

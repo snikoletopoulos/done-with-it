@@ -27,17 +27,16 @@ const WelcomeScreen: React.FC<AuthStackScreenProps<"Welcome">> = props => {
 				/>
 				<Text style={styles.tagLine}>Sell what you don't need</Text>
 			</View>
-
 			<View style={styles.buttonContainer}>
 				<Button
 					color={"primary"}
 					title="Login"
-					onPress={() => console.log("Login")}
+					onPress={() => props.navigation.navigate("Login")}
 				/>
 				<Button
 					color={"secondary"}
 					title="Register"
-					onPress={() => console.log("Register")}
+					onPress={() => props.navigation.navigate("Register")}
 				/>
 			</View>
 		</ImageBackground>
