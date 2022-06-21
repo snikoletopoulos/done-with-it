@@ -68,7 +68,7 @@ const styles = StyleSheet.create<Style>({
 	},
 
 	logoContainer: {
-		marginTop: 30,
+		marginTop: 60,
 		alignItems: "center",
 	},
 
