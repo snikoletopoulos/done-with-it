@@ -1,6 +1,7 @@
 import { StyleSheet, Image, ImageStyle, ViewStyle } from "react-native";
 
 import * as Yup from "yup";
+import { AuthStackScreenProps } from "navigation/types";
 
 import Screen from "components/ui/Screen";
 import { FormField, FormikForm } from "components/form";
@@ -21,7 +22,7 @@ const loginFormSchema = Yup.object().shape({
 	password: Yup.string().required().min(6).label("Password"),
 });
 
-const LoginScreen: React.FC = () => {
+const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 	return (
 		<Screen style={styles.container}>
 			<FormikForm

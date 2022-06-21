@@ -1,6 +1,10 @@
 import { StyleSheet, FlatList, View, ViewStyle } from "react-native";
 
 import colors from "constants/colors";
+import {
+	AccountStackParamList,
+	AccountStackScreenProps,
+} from "navigation/types";
 
 import Screen from "components/ui/Screen";
 import ListItem from "components/list/ListItem";
@@ -32,7 +36,7 @@ const menuItems: MenuItem[] = [
 	},
 ];
 
-const MyAccountScreen: React.FC = () => {
+const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
 	return (
 		<Screen style={styles.screen}>
 			<View style={styles.container}>

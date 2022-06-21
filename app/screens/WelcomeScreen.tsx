@@ -9,9 +9,11 @@ import {
 	TextStyle,
 } from "react-native";
 
+import { AuthStackScreenProps } from "navigation/types";
+
 import Button from "components/ui/Button";
 
-const WelcomeScreen: React.FC = () => {
+const WelcomeScreen: React.FC<AuthStackScreenProps<"Welcome">> = props => {
 	return (
 		<ImageBackground
 			source={require("assets/images/background.jpg")}

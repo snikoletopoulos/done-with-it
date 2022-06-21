@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet } from "react-native";
 
 import Constants from "expo-constants";
+import { FeedStackScreenProps } from "navigation/types";
 
 import Screen from "components/ui/Screen";
 import Card from "components/ui/Card";
@@ -21,7 +22,7 @@ const listing = [
 	},
 ];
 
-const ListingScreen = () => {
+const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 	return (
 		<Screen style={styles.screen}>
 			<FlatList

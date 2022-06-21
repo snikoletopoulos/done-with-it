@@ -8,11 +8,14 @@ import {
 } from "react-native";
 
 import colors from "constants/colors";
+import { FeedStackScreenProps } from "navigation/types";
 
 import Text from "components/ui/Text";
 import ListItem from "components/list/ListItem";
 
-const ListingDetailsScreen: React.FC = () => {
+const ListingDetailsScreen: React.FC<
+	FeedStackScreenProps<"ListingDetails">
+> = props => {
 	return (
 		<View>
 			<Image
