@@ -6,6 +6,7 @@ import {
 	ViewStyle,
 	ImageStyle,
 	TextStyle,
+	Pressable,
 } from "react-native";
 
 import colors from "constants/colors";
@@ -16,13 +17,14 @@ interface Props {
 	title: string;
 	subTitle: string;
 	image: ImageSourcePropType;
+	onPress: () => void;
 }
 
 const Card: React.FC<Props> = props => {
 	const { title, subTitle, image } = props;
 
 	return (
-		<View style={styles.card}>
+		<Pressable style={styles.card} onPress={props.onPress}>
 			<Image source={image} style={styles.image} />
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title} numberOfLines={1}>
@@ -32,7 +34,7 @@ const Card: React.FC<Props> = props => {
 					{subTitle}
 				</Text>
 			</View>
-		</View>
+		</Pressable>
 	);
 };
 
