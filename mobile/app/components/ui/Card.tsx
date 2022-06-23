@@ -16,16 +16,16 @@ import Text from "components/ui/Text";
 interface Props {
 	title: string;
 	subTitle: string;
-	image: ImageSourcePropType;
+	imageUrl: string;
 	onPress: () => void;
 }
 
 const Card: React.FC<Props> = props => {
-	const { title, subTitle, image } = props;
+	const { title, subTitle, imageUrl } = props;
 
 	return (
 		<Pressable style={styles.card} onPress={props.onPress}>
-			<Image source={image} style={styles.image} />
+			<Image source={require(imageUrl)} style={styles.image} />
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title} numberOfLines={1}>
 					{title}
