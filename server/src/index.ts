@@ -1,4 +1,5 @@
 import express from "express";
+//@ts-ignore
 import helmet from "helmet";
 import compression from "compression";
 import config from "config";
@@ -29,10 +30,6 @@ app.use("/api/auth", auth);
 app.use("/api/my", my);
 app.use("/api/expoPushTokens", expoPushTokens);
 app.use("/api/messages", messages);
-
-if (!process.env.PORT) {
-	throw new Error("Missing PORT enviroment variable");
-}
 
 const port = process.env.PORT || config.get("port");
 app.listen(port, function () {
