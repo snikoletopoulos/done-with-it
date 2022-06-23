@@ -1,4 +1,6 @@
-const listings = [
+import { Listing } from "../types/listing.types";
+
+const listings: Listing[] = [
   {
     id: 201,
     title: "Red jacket",
@@ -104,20 +106,15 @@ const listings = [
   },
 ];
 
-const addListing = (listing) => {
+export const addListing = (listing) => {
   listing.id = listings.length + 1;
   listings.push(listing);
 };
 
-const getListings = () => listings;
+export const getListings = () => listings;
 
-const getListing = (id) => listings.find((listing) => listing.id === id);
+export const getListing = (id: number) =>
+  listings.find((listing) => listing.id === id);
 
-const filterListings = (predicate) => listings.filter(predicate);
-
-module.exports = {
-  addListing,
-  getListings,
-  getListing,
-  filterListings,
-};
+export const filterListings = (predicate: any) => listings.filter(predicate);
+sdaf;
