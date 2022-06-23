@@ -1,11 +1,12 @@
+import { RequestHandler } from "express";
 import sharp from "sharp";
 import path from "path";
 import fs from "fs";
 
 const outputFolder = "public/assets";
 
-export default async (req, res, next) => {
-	const images = [];
+const imageResize: RequestHandler = async (req, res, next) => {
+	const images: any[] = [];
 
 	const resizePromises = req.files.map(async file => {
 		await sharp(file.path)
@@ -29,3 +30,5 @@ export default async (req, res, next) => {
 
 	next();
 };
+
+export default imageResize;

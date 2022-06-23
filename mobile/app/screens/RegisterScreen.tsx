@@ -37,7 +37,7 @@ const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 			>
 				<>
 					<FormField
-						icon="person"
+						icon="account"
 						autoCapitalize="words"
 						autoCorrect={false}
 						placeholder="Name"

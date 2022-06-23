@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(compression());
 
+
 app.use("/api/categories", categories);
 app.use("/api/listing", listing);
 app.use("/api/listings", listings);
