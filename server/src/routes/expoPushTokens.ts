@@ -15,7 +15,10 @@ router.post("/", [auth, validateWith(token)], (req: Request, res: Response) => {
 	const user = getUserById(req.user.userId);
 	if (!user) return res.status(400).send({ error: "Invalid user." });
 
-	console.log("User registered for notifications: ", { ...user, expoPushToken: req.body.token });
+	console.log("User registered for notifications: ", {
+		...user,
+		expoPushToken: req.body.token,
+	});
 	res.status(201).send();
 });
 

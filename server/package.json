@@ -7,7 +7,7 @@
 		"start": "node dist/index.js",
 		"compile": "tsc",
 		"dev": "nodemon",
-		"format": "prettier --write **/*.ts"
+		"format": "prettier --write src/**/*.ts **/*.ts"
 	},
 	"keywords": [],
 	"author": "Mosh Hamedani",

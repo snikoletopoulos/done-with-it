@@ -15,7 +15,9 @@ const schema = z.object({
 router.post("/", validateWith(schema), (req, res) => {
 	const { name, email, password } = req.body as { [key: string]: string };
 	if (getUserByEmail(email))
-		return res.status(400).send({ error: "A user with the given email already exists." });
+		return res
+			.status(400)
+			.send({ error: "A user with the given email already exists." });
 
 	const user = { name, email, password };
 	addUser(user);

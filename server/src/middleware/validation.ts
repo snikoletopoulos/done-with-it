@@ -6,7 +6,8 @@ const validation =
 	(req, res, next) => {
 		const result = schema.parse(req.body);
 
-		if (result.error) return res.status(400).send({ error: result.error.details[0].message });
+		if (result.error)
+			return res.status(400).send({ error: result.error.details[0].message });
 
 		next();
 	};

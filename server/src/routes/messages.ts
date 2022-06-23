@@ -36,28 +36,32 @@ router.get("/", auth, (req, res) => {
 	res.send(resources);
 });
 
-router.post("/", [auth, validateWith(messageSchema)], async (req: Request, res: Response) => {
-	const { listingId, message } = req.body;
+router.post(
+	"/",
+	[auth, validateWith(messageSchema)],
+	async (req: Request, res: Response) => {
+		const { listingId, message } = req.body;
 
-	const listing = getListing(listingId);
-	if (!listing) return res.status(400).send({ error: "Invalid listingId." });
+		const listing = getListing(listingId);
+		if (!listing) return res.status(400).send({ error: "Invalid listingId." });
 
-	const targetUser = getUserById(listing.userId);
-	if (!targetUser) return res.status(400).send({ error: "Invalid userId." });
+		const targetUser = getUserById(listing.userId);
+		if (!targetUser) return res.status(400).send({ error: "Invalid userId." });
 
-	add({
-		fromUserId: req.user.userId,
-		toUserId: listing.userId,
-		listingId,
-		content: message,
-	});
+		add({
+			fromUserId: req.user.userId,
+			toUserId: listing.userId,
+			listingId,
+			content: message,
+		});
 
-	//TODO
-	// const { expoPushToken } = targetUser;
+		//TODO
+		// const { expoPushToken } = targetUser;
 
-	// if (Expo.isExpoPushToken(expoPushToken)) await sendPushNotification(expoPushToken, message);
+		// if (Expo.isExpoPushToken(expoPushToken)) await sendPushNotification(expoPushToken, message);
 
-	res.status(201).send();
-});
+		res.status(201).send();
+	}
+);
 
 export default router;

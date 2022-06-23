@@ -30,8 +30,13 @@ const listings: Listing[] = [
 	{
 		id: 1,
 		title: "Room & Board couch (great condition) - delivery included",
-		description: "I'm selling my furniture at a discount price. Pick up at Venice. DM me asap.",
-		images: [{ fileName: "couch1" }, { fileName: "couch2" }, { fileName: "couch3" }],
+		description:
+			"I'm selling my furniture at a discount price. Pick up at Venice. DM me asap.",
+		images: [
+			{ fileName: "couch1" },
+			{ fileName: "couch2" },
+			{ fileName: "couch3" },
+		],
 		price: 1000,
 		categoryId: 1,
 		userId: 1,
@@ -110,7 +115,9 @@ export const addListing = (listing: Optional<Listing, "id">) => {
 
 export const getListings = () => listings;
 
-export const getListing = (id: number) => listings.find(listing => listing.id === id);
+export const getListing = (id: number) =>
+	listings.find(listing => listing.id === id);
 
-export const filterListings = (predicate: Parameters<typeof listings.filter>[0]) =>
-	listings.filter(predicate);
+export const filterListings = (
+	predicate: Parameters<typeof listings.filter>[0]
+) => listings.filter(predicate);
