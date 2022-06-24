@@ -20,7 +20,7 @@ const ListingDetailsScreen: React.FC<
 
 	return (
 		<View>
-			<Image style={styles.image} source={require(listing.images[0].url)} />
+			<Image style={styles.image} source={{ uri: listing.images[0].url }} />
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title}>{listing.title}</Text>
 				<Text style={styles.price}>{listing.price}</Text>

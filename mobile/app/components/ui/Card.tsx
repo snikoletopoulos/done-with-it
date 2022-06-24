@@ -2,7 +2,6 @@ import {
 	StyleSheet,
 	View,
 	Image,
-	ImageSourcePropType,
 	ViewStyle,
 	ImageStyle,
 	TextStyle,
@@ -25,7 +24,7 @@ const Card: React.FC<Props> = props => {
 
 	return (
 		<Pressable style={styles.card} onPress={props.onPress}>
-			<Image source={require(imageUrl)} style={styles.image} />
+			<Image source={{ uri: imageUrl }} style={styles.image} />
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title} numberOfLines={1}>
 					{title}
