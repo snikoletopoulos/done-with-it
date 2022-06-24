@@ -16,7 +16,9 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 	useEffect(() => {
 		(async () => {
 			const response = await listingsApi.getListings();
-			setListings(response.data);
+			if (response.ok && response.data) {
+				setListings(response.data);
+			}
 		})();
 	}, []);
 
