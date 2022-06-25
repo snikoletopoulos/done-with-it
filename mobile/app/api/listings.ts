@@ -1,10 +1,47 @@
+import { AxiosRequestConfig } from "axios";
+
 import { Listing } from "types/listing.types";
 import client from "./client";
+import { Location } from "types/listing.types";
 
 const endpoint = "/listings";
 
-const getListings = () => client.get<Listing[]>(endpoint);
+export const getListings = () => client.get<Listing[]>(endpoint);
 
-export default {
-	getListings,
+export const addListing = (
+	listing: Pick<
+		Listing,
+		"title" | "description" | "categoryId" | "images" | "price"
+	> & { location?: Location },
+	onUploadProgress?: AxiosRequestConfig["onUploadProgress"]
+) => {
+	const formData = new FormData();
+
+	formData.append("title", listing.title);
+	formData.append("price", listing.price.toString());
+	formData.append("categoryId", listing.categoryId.toString());
+	formData.append("description", listing.description);
+
+	if (listing.location)
+		formData.append("location", JSON.stringify(listing.location));
+
+	listing.images.forEach((image, index) => {
+		formData.append("images", {
+			name: "name" + index.toString(),
+			uri: image.url,
+			type: "image/jpeg",
+		});
+	});
+
+	const handleUploadProgress = (
+		progress: AxiosRequestConfig["onUploadProgress"]
+	) => {
+		if (onUploadProgress) {
+			onUploadProgress(progress);
+		}
+	};
+
+	return client.post<Listing>(endpoint, formData, {
+		onUploadProgress: handleUploadProgress,
+	});
 };

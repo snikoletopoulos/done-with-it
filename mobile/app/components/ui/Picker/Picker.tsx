@@ -15,6 +15,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Text from "../Text";
 import Button from "../Button";
 import PickerItem from "./PickerItem";
+import Screen from "../Screen";
 
 interface Props {
 	icon?: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
@@ -37,7 +38,7 @@ const Picker: React.FC<Props> = props => {
 		width = "100%",
 	} = props;
 	const [modalIsVisible, setModalIsVisible] = useState(false);
-
+console.log(icon)
 	return (
 		<>
 			<Pressable
@@ -65,21 +66,23 @@ const Picker: React.FC<Props> = props => {
 			</Pressable>
 
 			<Modal visible={modalIsVisible} animationType="slide">
-				<Button title="Close" onPress={() => setModalIsVisible(false)} />
-				<FlatList
-					data={options}
-					keyExtractor={option => option.value.toString()}
-					numColumns={numberOfColumns}
-					renderItem={({ item }) => (
-						<PickerItemComponent
-							item={item}
-							onPress={() => {
-								props.onSelectItem(item);
-								setModalIsVisible(false);
-							}}
-						/>
-					)}
-				/>
+				<Screen>
+					<Button title="Close" onPress={() => setModalIsVisible(false)} />
+					<FlatList
+						data={options}
+						keyExtractor={option => option.value.toString()}
+						numColumns={numberOfColumns}
+						renderItem={({ item }) => (
+							<PickerItemComponent
+								item={item}
+								onPress={() => {
+									props.onSelectItem(item);
+									setModalIsVisible(false);
+								}}
+							/>
+						)}
+					/>
+				</Screen>
 			</Modal>
 		</>
 	);
