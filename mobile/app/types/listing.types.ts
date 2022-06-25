@@ -5,6 +5,8 @@ export interface Listing {
 	price: number;
 	userId: number;
 	location: Location;
+	description: string;
+	categoryId: number;
 }
 
 export interface Location {

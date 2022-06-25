@@ -35,15 +35,13 @@ const validationSchema = Yup.object().shape({
 	images: Yup.array().min(1, "Please select at least one image"),
 });
 
-interface InitialValues {
+const initialValues: {
 	title: string;
 	price: string;
 	description: string;
 	category: Option | null;
 	images: Image[];
-}
-
-const initialValues: InitialValues = {
+} = {
 	title: "test",
 	price: "10",
 	description: "asdfas",
