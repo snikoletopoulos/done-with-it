@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react";
-import { Formik } from "formik";
+import { Formik, FormikConfig, FormikValues } from "formik";
 
-const FormikForm: React.FC<
-	PropsWithChildren<React.ComponentProps<typeof Formik>>
-> = props => {
+const FormikForm = <T extends FormikValues>(
+	props: PropsWithChildren<FormikConfig<T>>
+) => {
 	return (
 		<Formik
 			{...props}
