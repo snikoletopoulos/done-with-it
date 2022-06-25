@@ -10,19 +10,19 @@ interface Props extends React.ComponentProps<typeof TextInput> {
 
 const FormField: React.FC<Props> = props => {
 	const { name, width, ...rest } = props;
-	const loginForm = useFormikContext<FormikValues>();
+	const form = useFormikContext<FormikValues>();
 
 	return (
 		<>
 			<TextInput
-				value={loginForm.values[name]}
-				onChangeText={loginForm.handleChange(name)}
-				onBlur={loginForm.handleBlur(name) ?? undefined}
+				value={form.values[name]}
+				onChangeText={form.handleChange(name)}
+				onBlur={form.handleBlur(name) ?? undefined}
 				width={width}
 				{...rest}
 			/>
-			{loginForm.touched[name] && loginForm.errors[name] && (
-				<ErrorMessage error={loginForm.errors[name]} />
+			{form.touched[name] && form.errors[name] && (
+				<ErrorMessage error={form.errors[name]} />
 			)}
 		</>
 	);
