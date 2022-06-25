@@ -3,7 +3,6 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import * as Yup from "yup";
 
 import useLocation from "hooks/use-location.hook";
-import useApi from "hooks/use-api-hook";
 import { categories } from "../../DUMMY_DATA";
 import { addListing } from "../api/listings";
 import { Image } from "../types/listing.types";
@@ -57,8 +56,6 @@ const ListingEditScreen = () => {
 	const [uploadProgress, setUploadProgress] = useState(0.5);
 	const [uploadVisible, setUploadVisible] = useState(false);
 
-	const { request, hasError, data, loading } = useApi(addListing);
-
 	return (
 		<Screen>
 			<UploadScreen
@@ -75,7 +72,7 @@ const ListingEditScreen = () => {
 						if (!values.category) return;
 
 						setUploadVisible(true);
-						const response = await request(
+						const response = await addListing(
 							{
 								categoryId: +values.category?.value,
 								description: values.description,
