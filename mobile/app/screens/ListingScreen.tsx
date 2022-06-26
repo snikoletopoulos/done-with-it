@@ -3,7 +3,6 @@ import { FlatList, StyleSheet, View, ViewStyle } from "react-native";
 
 import { FeedStackScreenProps } from "navigation/types";
 import { getListings } from "../api/listings";
-import { Listing } from "types/listing.types";
 import colors from "constants/colors";
 import useApi from "hooks/use-api-hook";
 
@@ -43,6 +42,7 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 							title={item.title}
 							subTitle={`$${item.price}`}
 							imageUrl={item.images[0].url}
+							thumbnailUrl={item.images[0].thumbnailUrl}
 							onPress={() => props.navigation.navigate("ListingDetails", item)}
 						/>
 					)}

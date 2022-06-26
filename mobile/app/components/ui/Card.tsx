@@ -1,7 +1,6 @@
 import {
 	StyleSheet,
 	View,
-	Image,
 	ViewStyle,
 	ImageStyle,
 	TextStyle,
@@ -11,20 +10,27 @@ import {
 import colors from "constants/colors";
 
 import Text from "components/ui/Text";
+import { Image } from "react-native-expo-image-cache";
 
 interface Props {
 	title: string;
 	subTitle: string;
 	imageUrl: string;
+	thumbnailUrl: string;
 	onPress: () => void;
 }
 
 const Card: React.FC<Props> = props => {
-	const { title, subTitle, imageUrl } = props;
+	const { title, subTitle, imageUrl, thumbnailUrl } = props;
 
 	return (
 		<Pressable style={styles.card} onPress={props.onPress}>
-			<Image source={{ uri: imageUrl }} style={styles.image} />
+			<Image
+				uri={imageUrl}
+				style={styles.image}
+				tint="light"
+				preview={{ uri: thumbnailUrl }}
+			/>
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title} numberOfLines={1}>
 					{title}
