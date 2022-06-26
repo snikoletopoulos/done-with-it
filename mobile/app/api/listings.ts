@@ -9,10 +9,10 @@ const endpoint = "/listings";
 export const getListings = () => client.get<Listing[]>(endpoint);
 
 export const addListing = (
-	listing: Pick<
-		Listing,
-		"title" | "description" | "categoryId" | "images" | "price"
-	> & { location?: Location },
+	listing: Pick<Listing, "title" | "description" | "categoryId" | "price"> & {
+		location?: Location;
+		images: string[];
+	},
 	onUploadProgress?: AxiosRequestConfig["onUploadProgress"]
 ) => {
 	const formData = new FormData();
@@ -28,7 +28,7 @@ export const addListing = (
 	listing.images.forEach((image, index) => {
 		formData.append("images", {
 			name: "name" + index.toString(),
-			uri: image.url,
+			uri: image,
 			type: "image/jpeg",
 		});
 	});

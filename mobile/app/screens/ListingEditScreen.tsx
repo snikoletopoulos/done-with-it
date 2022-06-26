@@ -41,7 +41,7 @@ const initialValues: {
 	price: string;
 	description: string;
 	category: Option | null;
-	images: Image[];
+	images: string[];
 } = {
 	title: "test",
 	price: "10",
