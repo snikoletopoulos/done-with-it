@@ -17,6 +17,7 @@ import FormImagePicker from "components/form/FormImagePicker";
 import Screen from "components/ui/Screen";
 import { Option } from "types/picker.types";
 import UploadScreen from "./UploadScreen";
+import CategoryPickerItem from "components/ui/Picker/CategoryPickerItem";
 
 const validationSchema = Yup.object().shape({
 	title: Yup.string().required().min(1).label("Title"),
@@ -106,6 +107,8 @@ const ListingEditScreen = () => {
 						name="category"
 						placeholder="Category"
 						width="50%"
+						numberOfColumns={3}
+						PickerItemComponent={CategoryPickerItem}
 					/>
 					<FormField
 						maxLength={255}
