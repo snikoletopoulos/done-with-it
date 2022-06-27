@@ -38,7 +38,7 @@ const Picker: React.FC<Props> = props => {
 		width = "100%",
 	} = props;
 	const [modalIsVisible, setModalIsVisible] = useState(false);
-console.log(icon)
+
 	return (
 		<>
 			<Pressable
