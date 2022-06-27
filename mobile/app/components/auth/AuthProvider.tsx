@@ -1,4 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+import * as SplashScreen from "expo-splash-screen";
+import authStorage from "./AuthProvider.helpers";
+import jwtDecode from "jwt-decode";
 
 export interface UserData {
 	userId: number;
@@ -19,6 +23,29 @@ const AuthContext = createContext<UserContext>({
 
 export const AuthProvider: React.FC = props => {
 	const [user, setUser] = useState<UserData | null>(null);
+	const [isAppReady, setIsAppReady] = useState(false);
+
+	useEffect(() => {
+		(async () => {
+			try {
+				await SplashScreen.preventAutoHideAsync();
+
+				const token = await authStorage.getToken();
+				if (!token) return;
+
+				const userData = jwtDecode<UserData>(token);
+
+				setUser(userData);
+			} catch (error) {
+				console.log(error);
+			} finally {
+				setIsAppReady(true);
+				await SplashScreen.hideAsync();
+			}
+		})();
+	}, []);
+
+	if (!isAppReady) return null;
 
 	return (
 		<AuthContext.Provider
