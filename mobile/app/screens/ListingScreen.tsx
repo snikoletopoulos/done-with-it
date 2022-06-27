@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { FlatList, StyleSheet, View, ViewStyle } from "react-native";
 
 import { FeedStackScreenProps } from "navigation/types";
