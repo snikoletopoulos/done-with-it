@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle, View } from "react-native";
 
 import * as Yup from "yup";
 import { AuthStackScreenProps } from "navigation/types";
@@ -27,43 +27,45 @@ const loginFormSchema = Yup.object().shape({
 
 const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 	return (
-		<Screen style={styles.container}>
-			<FormikForm
-				initialValues={initialFormValues}
-				validationSchema={loginFormSchema}
-				onSubmit={values => {
-					console.log(values);
-				}}
-			>
-				<>
-					<FormField
-						icon="account"
-						autoCapitalize="words"
-						autoCorrect={false}
-						placeholder="Name"
-						name="name"
-					/>
-					<FormField
-						icon="email"
-						autoCapitalize="none"
-						autoCorrect={false}
-						keyboardType="email-address"
-						placeholder="Email"
-						textContentType="emailAddress"
-						name="email"
-					/>
-					<FormField
-						autoCapitalize="none"
-						autoCorrect={false}
-						icon="lock"
-						placeholder="Password"
-						secureTextEntry
-						textContentType="password"
-						name="password"
-					/>
-					<SubmitButton title="Register" />
-				</>
-			</FormikForm>
+		<Screen>
+			<View style={styles.container}>
+				<FormikForm
+					initialValues={initialFormValues}
+					validationSchema={loginFormSchema}
+					onSubmit={values => {
+						console.log(values);
+					}}
+				>
+					<>
+						<FormField
+							icon="account"
+							autoCapitalize="words"
+							autoCorrect={false}
+							placeholder="Name"
+							name="name"
+						/>
+						<FormField
+							icon="email"
+							autoCapitalize="none"
+							autoCorrect={false}
+							keyboardType="email-address"
+							placeholder="Email"
+							textContentType="emailAddress"
+							name="email"
+						/>
+						<FormField
+							autoCapitalize="none"
+							autoCorrect={false}
+							icon="lock"
+							placeholder="Password"
+							secureTextEntry
+							textContentType="password"
+							name="password"
+						/>
+						<SubmitButton title="Register" />
+					</>
+				</FormikForm>
+			</View>
 		</Screen>
 	);
 };

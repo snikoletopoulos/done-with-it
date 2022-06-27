@@ -1,4 +1,4 @@
-import { StyleSheet, Image, ImageStyle, ViewStyle } from "react-native";
+import { StyleSheet, Image, ImageStyle, ViewStyle, View } from "react-native";
 
 import * as Yup from "yup";
 import { AuthStackScreenProps } from "navigation/types";
@@ -24,19 +24,18 @@ const loginFormSchema = Yup.object().shape({
 
 const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 	return (
-		<Screen style={styles.container}>
-			<FormikForm
-				initialValues={initialFormValues}
-				validationSchema={loginFormSchema}
-				onSubmit={values => {
-					console.log(values);
-				}}
-			>
+		<Screen>
+			<View style={styles.container}>
+				<Image
+					style={styles.logo}
+					source={require("assets/images/logo-red.png")}
+				/>
+				<FormikForm
+					initialValues={initialFormValues}
+					validationSchema={loginFormSchema}
+					onSubmit={handleSubmit}
+				>
 				<>
-					<Image
-						style={styles.logo}
-						source={require("assets/images/logo-red.png")}
-					/>
 					<FormField
 						icon="email"
 						autoCapitalize="none"
@@ -56,8 +55,8 @@ const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 						name="password"
 					/>
 					<SubmitButton title="Login" />
-				</>
-			</FormikForm>
+				</FormikForm>
+			</View>
 		</Screen>
 	);
 };
