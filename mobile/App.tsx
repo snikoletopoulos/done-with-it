@@ -7,15 +7,19 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import AuthNavigator from "navigation/AuthNavigator";
 import AppNavigator from "navigation/AppNavigator";
+import OfflineNotice from "components/OfflineNotice";
 
 const App: React.FC = () => {
 	return (
-		<GestureHandlerRootView style={styles.wrapperContainer}>
-			<NavigationContainer theme={navigationTheme}>
+		<>
+			<OfflineNotice />
+			<GestureHandlerRootView style={styles.wrapperContainer}>
+				<NavigationContainer theme={navigationTheme}>
 				{/* <AuthNavigator /> */}
 				<AppNavigator />
-			</NavigationContainer>
-		</GestureHandlerRootView>
+				</NavigationContainer>
+			</GestureHandlerRootView>
+		</>
 	);
 };
 
