@@ -21,7 +21,7 @@ apiClient.get = async <T, U = T>(
 		return response;
 	}
 
-	const cachedResponse = cache.get(url) as T;
+	const cachedResponse = await cache.get(url) as T;
 
 	return cachedResponse
 		? {
