@@ -1,6 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 
-const STORE_KEY = "authToken";
+const STORE_KEY = "auth_token";
 
 const storeToken = async (authToken: string) => {
 	try {
