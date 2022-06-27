@@ -1,17 +1,16 @@
+import { useEffect } from "react";
 import { StyleSheet, Image, ImageStyle, ViewStyle, View } from "react-native";
 
 import * as Yup from "yup";
 import { AuthStackScreenProps } from "navigation/types";
 import { login } from "../api/auth";
 import { FormikConfig } from "formik";
-import { UserData, AuthContext, authStorage } from "components/auth";
+import { useAuth } from "components/auth";
 
 import Screen from "components/ui/Screen";
 import { FormField, FormikForm, ErrorMessage } from "components/form";
 import SubmitButton from "components/form/SubmitButton";
 import useApi from "hooks/use-api-hook";
-import { useContext, useEffect } from "react";
-import jwtDecode from "jwt-decode";
 
 export interface LoginFormValues {
 	email: string;
@@ -29,22 +28,18 @@ const loginFormSchema = Yup.object().shape({
 });
 
 const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
-	const userContext = useContext(AuthContext);
-	const { request, data, hasError } = useApi<string>(login);
+	const { logIn } = useAuth();
+	const { request: loginRequest, data, hasError } = useApi<string>(login);
 
 	useEffect(() => {
-		if (!data) return;
-
-		const user = jwtDecode<UserData>(data);
-		userContext.setUser(user);
-		authStorage.storeToken(data);
-	}, [data, userContext]);
+		if (data) logIn(data);
+	}, [data, logIn]);
 
 	const handleSubmit: FormikConfig<LoginFormValues>["onSubmit"] = ({
 		email,
 		password,
 	}: typeof initialFormValues) => {
-		request(email, password);
+		loginRequest(email, password);
 	};
 
 	return (

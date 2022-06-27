@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 import * as SplashScreen from "expo-splash-screen";
 import authStorage from "./AuthProvider.helpers";
+import jwtDecode from "jwt-decode";
 
 export interface UserData {
 	userId: number;
@@ -12,12 +13,14 @@ export interface UserData {
 
 export interface UserContext {
 	user: UserData | null;
-	setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
+	logIn: (user: string) => void;
+	logOut: () => void;
 }
 
 const AuthContext = createContext<UserContext>({
 	user: null,
-	setUser: () => null,
+	logIn: () => null,
+	logOut: () => null,
 });
 
 export const AuthProvider: React.FC = props => {
@@ -43,11 +46,23 @@ export const AuthProvider: React.FC = props => {
 
 	if (!isAppReady) return null;
 
+	const logIn = (token: string) => {
+		const user = jwtDecode<UserData>(token);
+		setUser(user);
+		authStorage.storeToken(token);
+	};
+
+	const logOut = () => {
+		setUser(null);
+		authStorage.removeToken();
+	};
+
 	return (
 		<AuthContext.Provider
 			value={{
 				user,
-				setUser,
+				logIn,
+				logOut,
 			}}
 		>
 			{props.children}

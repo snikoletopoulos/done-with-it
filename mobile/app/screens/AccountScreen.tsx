@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { StyleSheet, FlatList, View, ViewStyle } from "react-native";
 
 import colors from "constants/colors";
@@ -6,13 +5,12 @@ import {
 	AccountStackParamList,
 	AccountStackScreenProps,
 } from "navigation/types";
-import AuthContext from "components/auth/AuthProvider";
 
 import Screen from "components/ui/Screen";
 import ListItem from "components/list/ListItem";
 import Icon from "components/ui/Icon";
 import ListItemSeparator from "components/list/ListItemSeparator";
-import { authStorage } from "components/auth";
+import { useAuth } from "components/auth";
 
 interface MenuItem {
 	title: string;
@@ -43,14 +41,9 @@ const menuItems: MenuItem[] = [
 ];
 
 const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
-	const { user, setUser } = useContext(AuthContext);
+	const { user, logOut } = useAuth();
 
 	if (!user) throw new Error("User not found");
-
-	const handleLogOut = () => {
-		setUser(null);
-		authStorage.removeToken();
-	};
 
 	return (
 		<Screen style={styles.screen}>
@@ -85,7 +78,7 @@ const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
 			<ListItem
 				title="Log Out"
 				IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-				onPress={handleLogOut}
+				onPress={logOut}
 			/>
 		</Screen>
 	);
