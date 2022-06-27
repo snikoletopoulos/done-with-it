@@ -2,10 +2,16 @@ import { StyleSheet, Image, ImageStyle, ViewStyle, View } from "react-native";
 
 import * as Yup from "yup";
 import { AuthStackScreenProps } from "navigation/types";
+import { login } from "../api/auth";
+import { FormikConfig } from "formik";
+import { UserData, AuthContext, authStorage } from "components/auth";
 
 import Screen from "components/ui/Screen";
-import { FormField, FormikForm } from "components/form";
+import { FormField, FormikForm, ErrorMessage } from "components/form";
 import SubmitButton from "components/form/SubmitButton";
+import useApi from "hooks/use-api-hook";
+import { useContext, useEffect } from "react";
+import jwtDecode from "jwt-decode";
 
 export interface LoginFormValues {
 	email: string;
@@ -19,10 +25,28 @@ const initialFormValues: LoginFormValues = {
 
 const loginFormSchema = Yup.object().shape({
 	email: Yup.string().email().required().label("Email"),
-	password: Yup.string().required().min(6).label("Password"),
+	password: Yup.string().required().min(5).label("Password"),
 });
 
 const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
+	const userContext = useContext(AuthContext);
+	const { request, data, hasError } = useApi<string>(login);
+
+	useEffect(() => {
+		if (!data) return;
+
+		const user = jwtDecode<UserData>(data);
+		userContext.setUser(user);
+		authStorage.storeToken(data);
+	}, [data, userContext]);
+
+	const handleSubmit: FormikConfig<LoginFormValues>["onSubmit"] = ({
+		email,
+		password,
+	}: typeof initialFormValues) => {
+		request(email, password);
+	};
+
 	return (
 		<Screen>
 			<View style={styles.container}>
@@ -35,7 +59,7 @@ const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 					validationSchema={loginFormSchema}
 					onSubmit={handleSubmit}
 				>
-				<>
+					{hasError && <ErrorMessage error="Invalid email and/or password" />}
 					<FormField
 						icon="email"
 						autoCapitalize="none"

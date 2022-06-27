@@ -5,21 +5,20 @@ import navigationTheme from "navigation/navigationTheme";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
-import AuthNavigator from "navigation/AuthNavigator";
 import AppNavigator from "navigation/AppNavigator";
 import OfflineNotice from "components/OfflineNotice";
+import { AuthProvider } from "components/auth/AuthProvider";
 
 const App: React.FC = () => {
 	return (
-		<>
+		<AuthProvider>
 			<OfflineNotice />
 			<GestureHandlerRootView style={styles.wrapperContainer}>
 				<NavigationContainer theme={navigationTheme}>
-				{/* <AuthNavigator /> */}
-				<AppNavigator />
+					<AppNavigator />
 				</NavigationContainer>
 			</GestureHandlerRootView>
-		</>
+		</AuthProvider>
 	);
 };
 

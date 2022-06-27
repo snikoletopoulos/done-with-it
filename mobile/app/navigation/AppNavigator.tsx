@@ -1,16 +1,25 @@
+import { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootTabParamList } from "./types";
+import AuthContext from "components/auth/AuthProvider";
 
 import AccountNavigator from "./AccountNavigator";
 import ListingEditScreen from "screens/ListingEditScreen";
 import FeedNavigator from "./FeedNavigator";
 import NewListingButton from "./NewListingButton";
+import AuthNavigator from "./AuthNavigator";
 
 const MainTab = createBottomTabNavigator<RootTabParamList>();
 
 const MainApp: React.FC = () => {
+	const userContext = useContext(AuthContext);
+
+	if (!userContext.user) {
+		return <AuthNavigator />;
+	}
+
 	return (
 		<MainTab.Navigator
 			initialRouteName="Feed"
