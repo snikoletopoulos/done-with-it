@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from "react";
 
 import * as SplashScreen from "expo-splash-screen";
 import authStorage from "./AuthProvider.helpers";
-import jwtDecode from "jwt-decode";
 
 export interface UserData {
 	userId: number;
@@ -30,10 +29,7 @@ export const AuthProvider: React.FC = props => {
 			try {
 				await SplashScreen.preventAutoHideAsync();
 
-				const token = await authStorage.getToken();
-				if (!token) return;
-
-				const userData = jwtDecode<UserData>(token);
+				const userData = await authStorage.getUser();
 
 				setUser(userData);
 			} catch (error) {
