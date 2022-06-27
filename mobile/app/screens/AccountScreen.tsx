@@ -12,6 +12,7 @@ import Screen from "components/ui/Screen";
 import ListItem from "components/list/ListItem";
 import Icon from "components/ui/Icon";
 import ListItemSeparator from "components/list/ListItemSeparator";
+import { authStorage } from "components/auth";
 
 interface MenuItem {
 	title: string;
@@ -46,8 +47,9 @@ const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
 
 	if (!user) throw new Error("User not found");
 
-	const handleLogout = () => {
+	const handleLogOut = () => {
 		setUser(null);
+		authStorage.removeToken();
 	};
 
 	return (
@@ -83,7 +85,7 @@ const MyAccountScreen: React.FC<AccountStackScreenProps<"Account">> = props => {
 			<ListItem
 				title="Log Out"
 				IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
-				onPress={handleLogout}
+				onPress={handleLogOut}
 			/>
 		</Screen>
 	);
