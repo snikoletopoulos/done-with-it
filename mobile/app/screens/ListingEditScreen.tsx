@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import useLocation from "hooks/use-location.hook";
 import { categories } from "../../DUMMY_DATA";
 import { addListing } from "../api/listings";
-import { Image } from "../types/listing.types";
 
 import {
 	FormikForm,
