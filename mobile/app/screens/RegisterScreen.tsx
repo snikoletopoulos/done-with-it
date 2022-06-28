@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 
 import * as Yup from "yup";
 import { AuthStackScreenProps } from "navigation/types";
+import useApi from "hooks/use-api-hook";
+import { register } from "api/user";
+import { login } from "api/auth";
+import { useAuth } from "components/auth";
 
 import Screen from "components/ui/Screen";
 import { FormField, FormikForm } from "components/form";
 import SubmitButton from "components/form/SubmitButton";
+import { ErrorMessage } from "components/form";
+import ActivityIndicator from "components/ui/ActivityIndicator";
 
 export interface LoginFormValues {
 	name: string;
@@ -22,21 +29,45 @@ const initialFormValues: LoginFormValues = {
 const loginFormSchema = Yup.object().shape({
 	name: Yup.string().required().label("Name"),
 	email: Yup.string().email().required().label("Email"),
-	password: Yup.string().required().min(6).label("Password"),
+	password: Yup.string().required().min(5).label("Password"),
 });
 
-const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
+const RegisterScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
+	const {
+		data: userData,
+		hasError,
+		loading,
+		request: registerRequest,
+	} = useApi(register);
+	const loginApi = useApi(login);
+	const { logIn } = useAuth();
+
+	useEffect(() => {
+		(async () => {
+			if (userData && "email" in userData) {
+				const { data: token, ok } = await loginApi.request(
+					userData.email,
+					userData.password
+				);
+
+				if (ok && token) {
+					logIn(token);
+				}
+			}
+		})();
+	}, [userData, loginApi, logIn]);
+
 	return (
 		<Screen>
 			<View style={styles.container}>
 				<FormikForm
 					initialValues={initialFormValues}
 					validationSchema={loginFormSchema}
-					onSubmit={values => {
-						console.log(values);
-					}}
+					onSubmit={values => registerRequest(values)}
 				>
 					<>
+						<ActivityIndicator visible={loading || loginApi.loading} />
+						{hasError && <ErrorMessage error={userData.error} />}
 						<FormField
 							icon="account"
 							autoCapitalize="words"
@@ -70,7 +101,7 @@ const LoginScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 	);
 };
 
-export default LoginScreen;
+export default RegisterScreen;
 
 interface Styles {
 	container: ViewStyle;
