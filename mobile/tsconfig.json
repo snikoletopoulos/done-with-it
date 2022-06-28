@@ -14,7 +14,8 @@
 			"store/*": ["app/store/*"],
 			"types/*": ["app/types/*"],
 			"helpers/*": ["app/helpers/*"],
-			"hooks/*": ["app/hooks/*"]
+			"hooks/*": ["app/hooks/*"],
+			"api/*": ["app/api/*"]
 		}
 	}
 }

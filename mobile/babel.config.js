@@ -18,6 +18,7 @@ module.exports = function (api) {
 						types: "./app/types",
 						helpers: "./app/helper",
 						hooks: "./app/hooks",
+						api: "./app/api",
 					},
 				},
 			],
