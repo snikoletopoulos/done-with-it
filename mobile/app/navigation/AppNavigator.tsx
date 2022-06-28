@@ -1,8 +1,12 @@
+import { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
 
 import { RootTabParamList } from "./types";
 import { useAuth } from "components/auth";
+import expoPushTokensApi from "api/expoPushTokens";
 
 import AccountNavigator from "./AccountNavigator";
 import ListingEditScreen from "screens/ListingEditScreen";
@@ -15,9 +19,27 @@ const MainTab = createBottomTabNavigator<RootTabParamList>();
 const MainApp: React.FC = () => {
 	const userContext = useAuth();
 
+	useEffect(() => {
+		if (userContext.user) {
+			registerForPushNotifications();
+		}
+	}, [userContext.user]);
+
 	if (!userContext.user) {
 		return <AuthNavigator />;
 	}
+
+	const registerForPushNotifications = async () => {
+		const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+		if (!permission.granted) return;
+
+		try {
+			const token = await Notifications.getExpoPushTokenAsync();
+			expoPushTokensApi.register(token);
+		} catch (error) {
+			console.log("Error getting a push token", error);
+		}
+	};
 
 	return (
 		<MainTab.Navigator
