@@ -20,9 +20,9 @@ router.post("/", validateWith(schema), (req, res) => {
 			.send({ error: "A user with the given email already exists." });
 
 	const user = { name, email, password };
-	addUser(user);
-
-	res.status(201).send(user);
+	if (addUser(user)) {
+		res.status(201).send(user);
+	}
 });
 
 router.get("/", (req, res) => {

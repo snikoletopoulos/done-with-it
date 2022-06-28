@@ -3,6 +3,7 @@ import { AxiosRequestConfig } from "axios";
 import { Listing } from "types/listing.types";
 import client from "./client";
 import { Location } from "types/listing.types";
+import { ApiError } from "./types";
 
 const endpoint = "/listings";
 
@@ -41,7 +42,7 @@ export const addListing = (
 		}
 	};
 
-	return client.post<Listing>(endpoint, formData, {
+	return client.post<Listing, ApiError>(endpoint, formData, {
 		onUploadProgress: handleUploadProgress,
 	});
 };

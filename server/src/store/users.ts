@@ -24,7 +24,8 @@ export const getUserById = (id: number) => users.find(user => user.id === id);
 export const getUserByEmail = (email: string) =>
 	users.find(user => user.email === email);
 
-export const addUser = (user: Optional<User, "id">) => {
+export const addUser = (user: Optional<User, "id">): user is User => {
 	user.id = users.length + 1;
 	users.push(user as User);
+	return true;
 };

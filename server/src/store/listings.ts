@@ -108,9 +108,12 @@ const listings: Listing[] = [
 	},
 ];
 
-export const addListing = (listing: Optional<Listing, "id">) => {
+export const addListing = (
+	listing: Optional<Listing, "id">
+): listing is Listing => {
 	listing.id = listings.length + 1;
 	listings.push(listing as Listing);
+	return true;
 };
 
 export const getListings = () => listings;

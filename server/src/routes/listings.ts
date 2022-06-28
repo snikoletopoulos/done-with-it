@@ -75,9 +75,9 @@ router.post(
 		if (req.body.location) listing.location = JSON.parse(req.body.location);
 		if (req.user) listing.userId = req.user.userId;
 
-		addListing(listing as Listing);
-
-		res.status(201).send(listing);
+		if (addListing(listing as Listing)) {
+			res.status(201).send(listing);
+		}
 	}
 );
 
