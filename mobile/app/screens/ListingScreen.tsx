@@ -25,30 +25,34 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 	}, [loadListings]);
 
 	return (
-		<Screen style={styles.screen}>
-			<View style={styles.container}>
-				{hasError && (
-					<>
-						<Text>Couldn't retrive the listings.</Text>
-						<Button title="Retry" onPress={() => loadListings()} />
-					</>
-				)}
-				<ActivityIndicator visible={loading} />
-				<FlatList
-					data={listings}
-					keyExtractor={listing => listing.id.toString()}
-					renderItem={({ item }) => (
-						<Card
-							title={item.title}
-							subTitle={`$${item.price}`}
-							imageUrl={item.images[0].url}
-							thumbnailUrl={item.images[0].thumbnailUrl}
-							onPress={() => props.navigation.navigate("ListingDetails", item)}
-						/>
+		<>
+			<ActivityIndicator visible={loading} />
+			<Screen style={styles.screen}>
+				<View style={styles.container}>
+					{hasError && (
+						<>
+							<Text>Couldn't retrive the listings.</Text>
+							<Button title="Retry" onPress={() => loadListings()} />
+						</>
 					)}
-				/>
-			</View>
-		</Screen>
+					<FlatList
+						data={listings}
+						keyExtractor={listing => listing.id.toString()}
+						renderItem={({ item }) => (
+							<Card
+								title={item.title}
+								subTitle={`$${item.price}`}
+								imageUrl={item.images[0].url}
+								thumbnailUrl={item.images[0].thumbnailUrl}
+								onPress={() =>
+									props.navigation.navigate("ListingDetails", item)
+								}
+							/>
+						)}
+					/>
+				</View>
+			</Screen>
+		</>
 	);
 };
 

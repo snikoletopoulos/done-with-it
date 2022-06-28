@@ -58,46 +58,48 @@ const RegisterScreen: React.FC<AuthStackScreenProps<"Login">> = () => {
 	}, [userData, loginApi, logIn]);
 
 	return (
-		<Screen>
-			<View style={styles.container}>
-				<FormikForm
-					initialValues={initialFormValues}
-					validationSchema={loginFormSchema}
-					onSubmit={values => registerRequest(values)}
-				>
-					<>
-						<ActivityIndicator visible={loading || loginApi.loading} />
-						{hasError && <ErrorMessage error={userData.error} />}
-						<FormField
-							icon="account"
-							autoCapitalize="words"
-							autoCorrect={false}
-							placeholder="Name"
-							name="name"
-						/>
-						<FormField
-							icon="email"
-							autoCapitalize="none"
-							autoCorrect={false}
-							keyboardType="email-address"
-							placeholder="Email"
-							textContentType="emailAddress"
-							name="email"
-						/>
-						<FormField
-							autoCapitalize="none"
-							autoCorrect={false}
-							icon="lock"
-							placeholder="Password"
-							secureTextEntry
-							textContentType="password"
-							name="password"
-						/>
-						<SubmitButton title="Register" />
-					</>
-				</FormikForm>
-			</View>
-		</Screen>
+		<>
+			<ActivityIndicator visible={loading || loginApi.loading} />
+			<Screen>
+				<View style={styles.container}>
+					<FormikForm
+						initialValues={initialFormValues}
+						validationSchema={loginFormSchema}
+						onSubmit={values => registerRequest(values)}
+					>
+						<>
+							{hasError && <ErrorMessage error={userData.error} />}
+							<FormField
+								icon="account"
+								autoCapitalize="words"
+								autoCorrect={false}
+								placeholder="Name"
+								name="name"
+							/>
+							<FormField
+								icon="email"
+								autoCapitalize="none"
+								autoCorrect={false}
+								keyboardType="email-address"
+								placeholder="Email"
+								textContentType="emailAddress"
+								name="email"
+							/>
+							<FormField
+								autoCapitalize="none"
+								autoCorrect={false}
+								icon="lock"
+								placeholder="Password"
+								secureTextEntry
+								textContentType="password"
+								name="password"
+							/>
+							<SubmitButton title="Register" />
+						</>
+					</FormikForm>
+				</View>
+			</Screen>
+		</>
 	);
 };
 
