@@ -2,9 +2,17 @@ import { ApiResponse, create } from "apisauce";
 import { AxiosRequestConfig } from "axios";
 
 import cache from "../utilities/cache";
+import { authStorage } from "components/auth";
 
 const apiClient = create({
-	baseURL: "http://192.168.1.17:9000/api",
+	baseURL: "http://192.168.1.252:9000/api",
+});
+
+apiClient.addAsyncRequestTransform(async request => {
+	const token = await authStorage.getToken();
+	if (!token) return;
+
+	request.headers["x-auth-token"] = token;
 });
 
 const axiosGet = apiClient.get;
@@ -21,7 +29,7 @@ apiClient.get = async <T, U = T>(
 		return response;
 	}
 
-	const cachedResponse = await cache.get(url) as T;
+	const cachedResponse = (await cache.get(url)) as T;
 
 	return cachedResponse
 		? {
