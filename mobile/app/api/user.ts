@@ -10,5 +10,12 @@ interface RegisterData {
 	password: string;
 }
 
+export interface RegisterResponse {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+}
+
 export const register = async (userInfo: RegisterData) =>
-	client.post<string, ApiError>(endpoint, userInfo);
+	client.post<RegisterResponse, ApiError>(endpoint, userInfo);
