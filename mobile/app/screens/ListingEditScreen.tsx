@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle, Alert } from "react-native";
 import * as Yup from "yup";
 
 import useLocation from "hooks/use-location.hook";
@@ -42,16 +42,16 @@ const initialValues: {
 	category: Option | null;
 	images: string[];
 } = {
-	title: "test",
-	price: "10",
-	description: "asdfas",
+	title: "",
+	price: "",
+	description: "",
 	category: null,
 	images: [],
 };
 
 const ListingEditScreen = () => {
 	const location = useLocation();
-	const [uploadProgress, setUploadProgress] = useState(0.5);
+	const [uploadProgress, setUploadProgress] = useState(0);
 	const [uploadVisible, setUploadVisible] = useState(false);
 
 	return (
@@ -66,7 +66,6 @@ const ListingEditScreen = () => {
 					initialValues={initialValues}
 					validationSchema={validationSchema}
 					onSubmit={async (values, { resetForm }) => {
-						console.log(values);
 						if (!values.category) return;
 
 						setUploadVisible(true);
@@ -79,13 +78,12 @@ const ListingEditScreen = () => {
 								title: values.title,
 								location,
 							},
-							setUploadProgress
+							({ loaded, total }) => setUploadProgress(loaded / total)
 						);
-						console.log(response);
 
 						if (!response.ok) {
 							setUploadVisible(false);
-							alert("Something went wrong");
+							Alert.alert("Something went wrong");
 							return;
 						}
 
