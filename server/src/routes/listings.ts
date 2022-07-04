@@ -8,7 +8,6 @@ import { getCategory } from "../store/categories";
 import validateWith from "../middleware/validation";
 import imageResize from "../middleware/imageResize";
 import auth from "../middleware/auth";
-import delay from "../middleware/delay";
 import listingMapper from "../mappers/listings";
 import { Listing } from "../types/listing.types";
 
@@ -22,14 +21,9 @@ const upload = multer({
 const ListingSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	price: z.number().min(1),
-	categoryId: z.number().min(1),
-	location: z
-		.object({
-			latitude: z.number(),
-			longitude: z.number(),
-		})
-		.optional(),
+	price: z.string().min(1),
+	categoryId: z.string().min(1),
+	location: z.string().optional(),
 });
 
 const validateCategoryId: RequestHandler = (req, res, next) => {
@@ -61,7 +55,6 @@ router.post(
 		validateCategoryId,
 		imageResize,
 	],
-
 	async (req: Request, res: Response) => {
 		const listing: Partial<Listing> = {
 			title: req.body.title,
@@ -77,7 +70,10 @@ router.post(
 
 		if (addListing(listing as Listing)) {
 			res.status(201).send(listing);
+			return;
 		}
+
+		res.status(500).send({ error: "Failed to add listing." });
 	}
 );
 
