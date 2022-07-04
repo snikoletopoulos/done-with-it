@@ -49,6 +49,8 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 								}
 							/>
 						)}
+						refreshing={!!listings?.length && !!loading}
+						onRefresh={loadListings}
 					/>
 				</View>
 			</Screen>
