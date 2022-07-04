@@ -1,4 +1,5 @@
 import { StyleSheet, ViewStyle } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
 
 import navigationTheme from "navigation/navigationTheme";
@@ -12,6 +13,7 @@ import { AuthProvider } from "components/auth/AuthProvider";
 const App: React.FC = () => {
 	return (
 		<AuthProvider>
+			<StatusBar  />
 			<OfflineNotice />
 			<GestureHandlerRootView style={styles.wrapperContainer}>
 				<NavigationContainer theme={navigationTheme}>
