@@ -42,8 +42,8 @@ const ListingScreen: React.FC<FeedStackScreenProps<"Listings">> = props => {
 							<Card
 								title={item.title}
 								subTitle={`$${item.price}`}
-								imageUrl={item.images[0].url}
-								thumbnailUrl={item.images[0].thumbnailUrl}
+								imageUrl={item?.images[0]?.url ?? null}
+								thumbnailUrl={item?.images[0]?.thumbnailUrl ?? null}
 								onPress={() =>
 									props.navigation.navigate("ListingDetails", item)
 								}

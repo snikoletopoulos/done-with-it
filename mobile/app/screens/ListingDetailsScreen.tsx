@@ -20,12 +20,14 @@ const ListingDetailsScreen: React.FC<
 
 	return (
 		<View>
-			<Image
-				style={styles.image}
-				uri={listing.images[0].url}
-				preview={{ uri: listing.images[0].thumbnailUrl }}
-				tint="light"
-			/>
+			{!!listing?.images.length && (
+				<Image
+					style={styles.image}
+					uri={listing.images[0].url}
+					preview={{ uri: listing.images[0].thumbnailUrl }}
+					tint="light"
+				/>
+			)}
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title}>{listing.title}</Text>
 				<Text style={styles.price}>{listing.price}</Text>

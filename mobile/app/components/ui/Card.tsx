@@ -25,12 +25,14 @@ const Card: React.FC<Props> = props => {
 
 	return (
 		<Pressable style={styles.card} onPress={props.onPress}>
-			<Image
-				uri={imageUrl}
-				style={styles.image}
-				tint="light"
-				preview={{ uri: thumbnailUrl }}
-			/>
+			{imageUrl && (
+				<Image
+					uri={imageUrl}
+					style={styles.image}
+					tint="light"
+					preview={{ uri: thumbnailUrl }}
+				/>
+			)}
 			<View style={styles.detailsContainer}>
 				<Text style={styles.title} numberOfLines={1}>
 					{title}
