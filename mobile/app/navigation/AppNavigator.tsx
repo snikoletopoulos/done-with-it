@@ -13,6 +13,7 @@ import ListingEditScreen from "screens/ListingEditScreen";
 import FeedNavigator from "./FeedNavigator";
 import NewListingButton from "./NewListingButton";
 import AuthNavigator from "./AuthNavigator";
+import { logError } from "helpers/error-handling.helpers";
 
 const MainTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -37,7 +38,7 @@ const MainApp: React.FC = () => {
 			const token = await Notifications.getExpoPushTokenAsync();
 			expoPushTokensApi.register(token);
 		} catch (error) {
-			console.log("Error getting a push token", error);
+			logError(error, "Error getting a push token");
 		}
 	};
 

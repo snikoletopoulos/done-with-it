@@ -13,6 +13,7 @@ import auth from "./routes/auth";
 import my from "./routes/my";
 import messages from "./routes/messages";
 import expoPushTokens from "./routes/expoPushTokens";
+import logger from "./routes/logger";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/api/auth", auth);
 app.use("/api/my", my);
 app.use("/api/expoPushTokens", expoPushTokens);
 app.use("/api/messages", messages);
+app.use("/api/logger", logger);
 
 const port = process.env.PORT || config.get("port");
 app.listen(port, function () {

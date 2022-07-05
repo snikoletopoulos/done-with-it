@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import authStorage from "./AuthProvider.helpers";
 import jwtDecode from "jwt-decode";
+import { logError } from "helpers/error-handling.helpers";
 
 export interface UserData {
 	userId: number;
@@ -36,7 +37,7 @@ export const AuthProvider: React.FC = props => {
 
 				setUser(userData);
 			} catch (error) {
-				console.log(error);
+				logError(error, "An error occured during startup");
 			} finally {
 				setIsAppReady(true);
 				await SplashScreen.hideAsync();
