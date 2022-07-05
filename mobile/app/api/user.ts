@@ -1,4 +1,3 @@
-import { UserData } from "components/auth";
 import client from "./client";
 import { ApiError } from "./types";
 
