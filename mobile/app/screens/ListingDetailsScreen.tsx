@@ -4,6 +4,8 @@ import {
 	ImageStyle,
 	TextStyle,
 	ViewStyle,
+	KeyboardAvoidingView,
+	Platform,
 } from "react-native";
 
 import colors from "constants/colors";
@@ -12,6 +14,7 @@ import { FeedStackScreenProps } from "navigation/types";
 import Text from "components/ui/Text";
 import ListItem from "components/list/ListItem";
 import { Image } from "react-native-expo-image-cache";
+import ContactSellerForm from "components/ContactSellerForm";
 
 const ListingDetailsScreen: React.FC<
 	FeedStackScreenProps<"ListingDetails">
@@ -19,7 +22,10 @@ const ListingDetailsScreen: React.FC<
 	const listing = props.route.params;
 
 	return (
-		<View>
+		<KeyboardAvoidingView
+			behavior="position"
+			keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 100}
+		>
 			{!!listing?.images.length && (
 				<Image
 					style={styles.image}
@@ -38,8 +44,9 @@ const ListingDetailsScreen: React.FC<
 						subTitle="5 Listings"
 					/>
 				</View>
+				<ContactSellerForm listing={listing} />
 			</View>
-		</View>
+		</KeyboardAvoidingView>
 	);
 };
 
