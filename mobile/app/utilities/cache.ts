@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import dayjs from "dayjs";
-import { logError } from "helpers/error-handling.helpers";
+import { logError } from "../helpers/error-handling.helpers";
 
 const CACHE_KEY = "cache";
 const EXPIRY_IN_MINUTES = 5;

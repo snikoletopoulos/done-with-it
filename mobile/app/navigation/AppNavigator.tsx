@@ -12,7 +12,7 @@ import ListingEditScreen from "screens/ListingEditScreen";
 import FeedNavigator from "./FeedNavigator";
 import NewListingButton from "./NewListingButton";
 import AuthNavigator from "./AuthNavigator";
-import { logError } from "helpers/error-handling.helpers";
+import { logError } from "../helpers/error-handling.helpers";
 
 const MainTab = createBottomTabNavigator<RootTabParamList>();
 

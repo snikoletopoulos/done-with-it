@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import authStorage from "./AuthProvider.helpers";
 import jwtDecode from "jwt-decode";
-import { logError } from "helpers/error-handling.helpers";
+import { logError } from "../../helpers/error-handling.helpers";
 
 export interface UserData {
 	userId: number;
