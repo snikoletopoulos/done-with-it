@@ -13,7 +13,7 @@ export type RootTabParamList = {
 	AccountNavigator: NavigatorScreenParams<AccountStackParamList>;
 };
 
-export type RootStackScreenProps<T extends keyof RootTabParamList> =
+export type RootTabScreenProps<T extends keyof RootTabParamList> =
 	BottomTabScreenProps<RootTabParamList, T>;
 
 export type FeedStackParamList = {
