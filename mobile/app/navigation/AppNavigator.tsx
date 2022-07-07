@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Notifications from "expo-notifications";
-import * as Permissions from "expo-permissions";
 
 import { RootTabParamList } from "./types";
 import { useAuth } from "components/auth";
@@ -31,12 +30,12 @@ const MainApp: React.FC = () => {
 	}
 
 	const registerForPushNotifications = async () => {
-		const permission = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+		const permission = await Notifications.requestPermissionsAsync();
 		if (!permission.granted) return;
 
 		try {
 			const token = await Notifications.getExpoPushTokenAsync();
-			expoPushTokensApi.register(token);
+			expoPushTokensApi.register(token.data);
 		} catch (error) {
 			logError(error, "Error getting a push token");
 		}
