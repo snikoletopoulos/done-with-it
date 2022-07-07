@@ -2,7 +2,7 @@ import { ApiResponse, create } from "apisauce";
 import { AxiosRequestConfig } from "axios";
 
 import cache from "../utilities/cache";
-import { authStorage } from "components/auth";
+import authStorage from "components/auth/AuthProvider.helpers";
 
 const apiClient = create({
 	baseURL: "http://192.168.1.252:9000/api",
