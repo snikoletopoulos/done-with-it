@@ -57,9 +57,10 @@ router.post(
 
 		const { expoPushToken } = targetUser;
 
-		if (Expo.isExpoPushToken(expoPushToken)) await sendPushNotification(expoPushToken, message);
+		if (Expo.isExpoPushToken(expoPushToken))
+			await sendPushNotification(expoPushToken, message);
 
-		res.status(201).send();
+		res.status(201).send({ success: true });
 	}
 );
 
