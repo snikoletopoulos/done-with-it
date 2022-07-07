@@ -17,5 +17,6 @@
 			"hooks/*": ["app/hooks/*"],
 			"api/*": ["app/api/*"]
 		}
-	}
+	},
+	"include": ["app/**/*", "./custom.d.ts"]
 }
