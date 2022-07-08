@@ -13,7 +13,7 @@ import { AuthProvider } from "components/auth/AuthProvider";
 const App: React.FC = () => {
 	return (
 		<AuthProvider>
-			<StatusBar  />
+			<StatusBar />
 			<OfflineNotice />
 			<GestureHandlerRootView style={styles.wrapperContainer}>
 				<NavigationContainer theme={navigationTheme}>
