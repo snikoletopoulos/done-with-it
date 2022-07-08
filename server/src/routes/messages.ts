@@ -17,12 +17,10 @@ const messageSchema = z.object({
 });
 
 router.get("/", auth, (req, res) => {
-	const messages = getMessagesForUser(req.user.userId);
+	if (!req.user)
+		return res.status(401).send({ error: "Access denied. No token provided." });
 
-	const mapUser = (userId: number) => {
-		const user = getUserById(userId);
-		return { id: user.id, name: user.name };
-	};
+	const messages = getMessagesForUser(req.user.userId);
 
 	const resources = messages.map(message => ({
 		id: message.id,

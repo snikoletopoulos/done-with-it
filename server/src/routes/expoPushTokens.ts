@@ -12,6 +12,8 @@ const token = z.object({
 });
 
 router.post("/", [auth, validateWith(token)], (req: Request, res: Response) => {
+	if (!req.user) return res.status(401).send({ error: "Unauthorized." });
+
 	const user = getUserById(req.user.userId);
 	if (!user) return res.status(400).send({ error: "Invalid user." });
 
