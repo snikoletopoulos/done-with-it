@@ -8,6 +8,8 @@ const outputFolder = "public/assets";
 const imageResize: RequestHandler = async (req, res, next) => {
 	const images: any[] = [];
 
+	if (!req.files) return;
+
 	const resizePromises = req.files.map(async file => {
 		await sharp(file.path)
 			.resize(2000)

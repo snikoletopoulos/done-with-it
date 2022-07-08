@@ -36,10 +36,18 @@ router.get("/", auth, (req, res) => {
 	res.send(resources);
 });
 
+const mapUser = (userId: number) => {
+	const user = getUserById(userId);
+	if (!user) return null;
+
+	return { id: user.id, name: user.name };
+};
+
 router.post(
 	"/",
 	[auth, validateWith(messageSchema)],
 	async (req: Request, res: Response) => {
+		if (!req.user) return res.status(401).send({ error: "Unauthorized." });
 		const { listingId, message } = req.body;
 
 		const listing = getListing(listingId);
@@ -47,9 +55,11 @@ router.post(
 
 		const targetUser = getUserById(listing.userId);
 		if (!targetUser) return res.status(400).send({ error: "Invalid userId." });
+		if (!targetUser.expoPushToken)
+			return res.status(400).send({ error: "Token not found" });
 
 		add({
-			fromUserId: req.user.userId,
+			fromUserId: req?.user?.userId,
 			toUserId: listing.userId,
 			listingId,
 			content: message,

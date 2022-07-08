@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/listings", auth, (req, res) => {
 	const listings = filterListings(
-		listing => listing.userId === req.user.userId
+		listing => listing.userId === req?.user?.userId
 	);
 	const resources = listings.map(listingMapper);
 
