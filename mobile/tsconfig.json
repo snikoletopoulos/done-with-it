@@ -18,5 +18,6 @@
 			"api/*": ["app/api/*"]
 		}
 	},
-	"include": ["app/**/*", "./custom.d.ts"]
+	"include": ["./**/*", "./custom.d.ts"],
+	"exclude": ["node_modules"]
 }
